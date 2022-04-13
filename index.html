@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Calculator</title>
+</head>
+
+<body>
+	<h1>Behzad's Calculator</h1>
+
+	<input id="output" type="text" readonly />
+	<button onclick="numberClick(0)">0</button>
+	<button onclick="numberClick(1)">1</button>
+	<button onclick="numberClick(2)">2</button>
+	<button onclick="numberClick(3)">3</button>
+	<button onclick="numberClick(4)">4</button>
+	<button onclick="numberClick(5)">5</button>
+	<button onclick="numberClick(6)">6</button>
+	<button onclick="numberClick(7)">7</button>
+	<button onclick="numberClick(8)">8</button>
+	<button onclick="numberClick(9)">9</button>
+	<button>*</button>
+	<button>/</button>
+	<button>+</button>
+	<button>-</button>
+	<button onclick="buttonClickAC()">AC</button>
+	<button onclick="buttonClickDel()">Del</button>
+
+	<script>
+		function numberClick(value) {
+			document.getElementById("output").value += value;
+		}
+		function buttonClickAC() {
+			document.getElementById("output").value = "";
+		}
+		function buttonClickDel() {
+			document.getElementById("output").value = "";
+		}
+	</script>
+</body>
+
+</html>
