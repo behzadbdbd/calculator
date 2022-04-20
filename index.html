@@ -1,53 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+  </head>
 
-<head>
-	<meta charset="UTF-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Calculator</title>
-</head>
+  <body>
+    <h1>Behzad's Calculator</h1>
 
-<body>
-	<h1>Behzad's Calculator</h1>
+    <input id="output" type="text" />
+    <button onclick="numberClick(0)">0</button>
+    <button onclick="numberClick(1)">1</button>
+    <button onclick="numberClick(2)">2</button>
+    <button onclick="numberClick(3)">3</button>
+    <button onclick="numberClick(4)">4</button>
+    <button onclick="numberClick(5)">5</button>
+    <button onclick="numberClick(6)">6</button>
+    <button onclick="numberClick(7)">7</button>
+    <button onclick="numberClick(8)">8</button>
+    <button onclick="numberClick(9)">9</button>
+    <button onclick="operatorClick('*')">*</button>
+    <button onclick="operatorClick('/')">/</button>
+    <button onclick="operatorClick('+')">+</button>
+    <button onclick="operatorClick('-')">-</button>
+    <button onclick="buttonClickAC()">AC</button>
+    <button onclick="buttonClickDel()">Del</button>
+    <button onclick="calculate()">=</button>
+    <script>
+      function numberClick(value) {
+        document.getElementById("output").value += value;
+      }
+      function operatorClick(operator) {
+        document.getElementById("output").value += operator;
+      }
+      function buttonClickAC() {
+        document.getElementById("output").value = "";
+      }
+      function buttonClickDel() {
+        document.getElementById("output").value = document
+          .getElementById("output")
+          .value.substring(
+            0,
+            document.getElementById("output").value.length - 1
+          );
+      }
+      function calculate() {
+        const numbers = document
+          .getElementById("output")
+          .value.split(/[+\-*\/]/);
+        const operators = document
+          .getElementById("output")
+          .value.split(/[0-9]/)
+          .filter(function (item) {
+            return item !== "";
+          });
 
-	<input id="output" type="text" readonly />
-	<button onclick="numberClick(0)">0</button>
-	<button onclick="numberClick(1)">1</button>
-	<button onclick="numberClick(2)">2</button>
-	<button onclick="numberClick(3)">3</button>
-	<button onclick="numberClick(4)">4</button>
-	<button onclick="numberClick(5)">5</button>
-	<button onclick="numberClick(6)">6</button>
-	<button onclick="numberClick(7)">7</button>
-	<button onclick="numberClick(8)">8</button>
-	<button onclick="numberClick(9)">9</button>
-	<button onclick="operatorClick('*')">*</button>
-	<button onclick="operatorClick('/')">/</button>
-	<button onclick="operatorClick('+')">+</button>
-	<button onclick="operatorClick('-')">-</button>
-	<button onclick="buttonClickAC()">AC</button>
-	<button onclick="buttonClickDel()">Del</button>
-	<button onclick="calculate()">=</button>
-	<script>
-		function numberClick(value) {
-			document.getElementById("output").value += value;
-		}
-		function operatorClick(operator) {
-			document.getElementById("output").value += operator;
-		}
-		function buttonClickAC() {
-			document.getElementById("output").value = "";
-		}
-		function buttonClickDel() {
-			document.getElementById("output").value =
-				document.getElementById("output").value.substring(0, document.getElementById("output").value.length - 1);
-		}
-		function calculate() {
-			const numbers = document.getElementById("output").value.split(/[+\-*\/]/)
-			const operators = document.getElementById("output").value.split(/[0-9]/)
-		}
-	</script>
-</body>
+        console.log(operators);
+        console.log(numbers);
 
+        let result;
+        let opt;
+        for (let i = 0; i < numbers.length; i++) {
+          console.log(numbers[i]);
+          console.log(operators[i]);
+
+          if (result && opt) {
+            switch (opt) {
+              case "+":
+                result += parseInt(numbers[i]);
+                break;
+
+              case "-":
+                result -= parseInt(numbers[i]);
+                break;
+
+              case "*":
+                result *= parseInt(numbers[i]);
+                break;
+
+              case "/":
+                result /= parseInt(numbers[i]);
+                break;
+
+              default:
+                break;
+            }
+          }
+
+          if (!result) {
+            result = parseInt(numbers[i]);
+          }
+          opt = operators[i];
+
+          console.log("end of loop");
+        }
+
+        document.getElementById("output").value = result;
+      }
+    </script>
+  </body>
 </html>
